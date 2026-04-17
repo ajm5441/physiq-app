@@ -1,0 +1,113 @@
+/* src/pages/NotFoundPage.module.css */
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  overflow: hidden;
+}
+
+.content {
+  text-align: center;
+  position: relative;
+  animation: fadeIn 0.4s ease;
+}
+
+/* ── Glitched 404 ─────────────────────────────────────────────────────────── */
+.code {
+  margin-bottom: 24px;
+  line-height: 1;
+  position: relative;
+}
+
+.codeGlitch {
+  font-family: var(--font-display);
+  font-size: clamp(6rem, 20vw, 10rem);
+  font-weight: 700;
+  color: var(--amber);
+  letter-spacing: 0.1em;
+  position: relative;
+  display: inline-block;
+  animation: flicker 5s ease infinite;
+}
+
+/* Glitch pseudo-layers */
+.codeGlitch::before,
+.codeGlitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  font-family: var(--font-display);
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+}
+
+.codeGlitch::before {
+  color: var(--teal);
+  clip-path: polygon(0 30%, 100% 30%, 100% 50%, 0 50%);
+  transform: translateX(-3px);
+  animation: glitchA 4s steps(2) infinite;
+  opacity: 0.7;
+}
+
+.codeGlitch::after {
+  color: var(--red);
+  clip-path: polygon(0 55%, 100% 55%, 100% 75%, 0 75%);
+  transform: translateX(3px);
+  animation: glitchB 3.5s steps(2) infinite 0.5s;
+  opacity: 0.7;
+}
+
+@keyframes glitchA {
+  0%,95%,100%   { transform: translateX(0); opacity: 0; }
+  96%           { transform: translateX(-4px); opacity: 0.7; }
+  97%           { transform: translateX(4px); opacity: 0.7; }
+  98%           { transform: translateX(-2px); opacity: 0.7; }
+  99%           { transform: translateX(0); opacity: 0; }
+}
+
+@keyframes glitchB {
+  0%,93%,100%   { transform: translateX(0); opacity: 0; }
+  94%           { transform: translateX(3px); opacity: 0.7; }
+  95%           { transform: translateX(-3px); opacity: 0.7; }
+  96%           { transform: translateX(2px); opacity: 0.7; }
+  97%           { transform: translateX(0); opacity: 0; }
+}
+
+/* ── Text ─────────────────────────────────────────────────────────────────── */
+.title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  letter-spacing: 0.14em;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+
+.body {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  max-width: 300px;
+  margin: 0 auto 32px;
+  line-height: 1.7;
+}
+
+/* ── Decorative scan line ─────────────────────────────────────────────────── */
+.scanWrap {
+  position: absolute;
+  inset: -60px;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 0.15;
+}
+
+.scan {
+  position: absolute;
+  left: 0; right: 0;
+  height: 2px;
+  background: var(--amber);
+  box-shadow: 0 0 12px var(--amber);
+  animation: scanline 3s linear infinite;
+}

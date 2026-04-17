@@ -1,0 +1,222 @@
+/* src/components/UI.module.css */
+
+/* ── Button ────────────────────────────────────────────────────────────────── */
+.btn {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.15s ease;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.btn-sm  { padding: 6px 14px; font-size: 0.72rem; }
+.btn-md  { padding: 10px 22px; }
+.btn-lg  { padding: 14px 32px; font-size: 0.88rem; }
+
+.btn-primary {
+  background: var(--amber);
+  color: #080c10;
+  border-color: var(--amber);
+}
+.btn-primary:hover:not(:disabled) {
+  background: #f7b845;
+  box-shadow: 0 0 20px var(--amber-glow);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--amber);
+  border-color: var(--border-amber);
+}
+.btn-secondary:hover:not(:disabled) {
+  background: var(--amber-subtle);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border-color: var(--border);
+}
+.btn-ghost:hover:not(:disabled) {
+  background: var(--bg-overlay);
+  color: var(--text-primary);
+  border-color: var(--border-bright);
+}
+
+.btn-danger {
+  background: transparent;
+  color: var(--red);
+  border-color: rgba(248,113,113,0.3);
+}
+.btn-danger:hover:not(:disabled) { background: var(--red-subtle); }
+
+.btnSpinner {
+  width: 14px; height: 14px;
+  border: 2px solid rgba(0,0,0,0.3);
+  border-top-color: #080c10;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Card ──────────────────────────────────────────────────────────────────── */
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+}
+.cardGlow {
+  border-color: var(--border-amber);
+  box-shadow: 0 0 24px var(--amber-glow);
+}
+.cardClickable {
+  cursor: pointer;
+  transition: border-color 0.15s, transform 0.15s;
+}
+.cardClickable:hover {
+  border-color: var(--border-bright);
+  transform: translateY(-1px);
+}
+
+/* ── Badge ─────────────────────────────────────────────────────────────────── */
+.badge {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.badge-default  { background: var(--bg-overlay);    color: var(--text-secondary); }
+.badge-amber    { background: var(--amber-subtle);   color: var(--amber); border: 1px solid var(--border-amber); }
+.badge-green    { background: var(--green-subtle);   color: var(--green); }
+.badge-red      { background: var(--red-subtle);     color: var(--red); }
+.badge-blue     { background: rgba(96,165,250,0.1);  color: var(--blue); }
+.badge-teal     { background: var(--teal-subtle);    color: var(--teal); }
+
+/* ── ProgressBar ───────────────────────────────────────────────────────────── */
+.progressWrap   { width: 100%; }
+.progressLabel  { display: flex; justify-content: space-between; margin-bottom: 6px; font-size: 0.75rem; color: var(--text-secondary); font-family: var(--font-mono); }
+.progressPct    { color: var(--text-muted); }
+.progressTrack  { height: 4px; background: var(--bg-overlay); border-radius: 2px; overflow: hidden; }
+.progressFill   { height: 100%; border-radius: 2px; transition: width 0.4s ease; }
+.progress-amber { background: var(--amber); box-shadow: 0 0 8px var(--amber-glow); }
+.progress-green { background: var(--green); }
+.progress-teal  { background: var(--teal); }
+.progress-red   { background: var(--red); }
+
+/* ── TierIndicator ─────────────────────────────────────────────────────────── */
+.tierWrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.tierLabel {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+}
+.tierPip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-surface);
+  min-width: 36px;
+  transition: all 0.2s;
+}
+.tierNum {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+.tierDots { display: flex; gap: 4px; }
+.tierDot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--bg-overlay);
+  border: 1px solid var(--border-bright);
+  transition: all 0.2s;
+}
+.tierDone {
+  border-color: var(--teal-dim);
+  background: var(--bg-overlay);
+}
+.tierDone .tierNum { color: var(--teal-dim); }
+.tierDone .tierDot { background: var(--teal-dim); border-color: var(--teal-dim); }
+
+.tierActive {
+  border-color: var(--border-amber);
+  background: var(--amber-subtle);
+  box-shadow: 0 0 12px var(--amber-glow);
+}
+.tierActive .tierNum { color: var(--amber); }
+.tierActive .tierDotFilled { background: var(--amber); border-color: var(--amber); box-shadow: 0 0 4px var(--amber); }
+
+/* ── QuestionCounter ───────────────────────────────────────────────────────── */
+.qCounter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--font-mono);
+  line-height: 1;
+}
+.qCounterNum   { font-size: 2rem; font-weight: 700; color: var(--amber); }
+.qCounterLabel { font-size: 0.65rem; color: var(--text-muted); letter-spacing: 0.08em; margin-top: 2px; }
+.qCounterDanger .qCounterNum { color: var(--red); animation: pulse 1s ease infinite; }
+
+/* ── Loader ────────────────────────────────────────────────────────────────── */
+.loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.loader-sm  { min-height: 60px; }
+.loader-md  { min-height: 160px; }
+.loader-lg  { min-height: 300px; }
+.loaderRing {
+  width: 32px; height: 32px;
+  border: 2px solid var(--bg-overlay);
+  border-top-color: var(--amber);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+.loader-sm .loaderRing { width: 20px; height: 20px; }
+.loader-lg .loaderRing { width: 48px; height: 48px; }
+.loaderLabel { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); letter-spacing: 0.08em; }
+
+/* ── EmptyState ────────────────────────────────────────────────────────────── */
+.empty { text-align: center; padding: 48px 24px; }
+.emptyIcon  { font-size: 2.5rem; margin-bottom: 16px; opacity: 0.4; }
+.emptyTitle { font-family: var(--font-mono); font-size: 0.9rem; color: var(--text-secondary); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 8px; }
+.emptyBody  { font-size: 0.875rem; color: var(--text-muted); max-width: 320px; margin: 0 auto 20px; }
+.emptyAction { margin-top: 20px; }
+
+/* ── StatusDot ─────────────────────────────────────────────────────────────── */
+.statusDot {
+  display: inline-block;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.dot-muted  { background: var(--text-muted); }
+.dot-amber  { background: var(--amber); box-shadow: 0 0 6px var(--amber); }
+.dot-green  { background: var(--green); box-shadow: 0 0 6px var(--green); }
+.dot-blue   { background: var(--blue); }

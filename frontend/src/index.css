@@ -1,0 +1,117 @@
+/* src/index.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Orbitron:wght@500;700&display=swap');
+
+/* ── Design tokens ────────────────────────────────────────────────────────── */
+:root {
+  /* Backgrounds — deep space */
+  --bg-base:       #080c10;
+  --bg-surface:    #0d1318;
+  --bg-raised:     #121a22;
+  --bg-overlay:    #1a2430;
+
+  /* Amber accent — oscilloscope trace */
+  --amber:         #f5a623;
+  --amber-dim:     #a86e14;
+  --amber-glow:    rgba(245, 166, 35, 0.15);
+  --amber-subtle:  rgba(245, 166, 35, 0.06);
+
+  /* Teal accent — secondary data */
+  --teal:          #2dd4bf;
+  --teal-dim:      #0f766e;
+  --teal-subtle:   rgba(45, 212, 191, 0.08);
+
+  /* Status colors */
+  --green:         #4ade80;
+  --green-subtle:  rgba(74, 222, 128, 0.08);
+  --red:           #f87171;
+  --red-subtle:    rgba(248, 113, 113, 0.08);
+  --blue:          #60a5fa;
+
+  /* Text */
+  --text-primary:    #e8edf2;
+  --text-secondary:  #7a8fa0;
+  --text-muted:      #3d5268;
+  --text-amber:      #f5a623;
+
+  /* Borders */
+  --border:          rgba(255,255,255,0.06);
+  --border-bright:   rgba(255,255,255,0.12);
+  --border-amber:    rgba(245, 166, 35, 0.3);
+
+  /* Typography */
+  --font-display:  'Orbitron', sans-serif;
+  --font-body:     'DM Sans', sans-serif;
+  --font-mono:     'Space Mono', monospace;
+
+  /* Spacing */
+  --radius-sm:  4px;
+  --radius-md:  8px;
+  --radius-lg:  12px;
+  --radius-xl:  16px;
+}
+
+/* ── Reset ────────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+
+body {
+  background: var(--bg-base);
+  color:      var(--text-primary);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* Subtle scanline texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.03) 2px,
+    rgba(0,0,0,0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+#root { min-height: 100vh; display: flex; flex-direction: column; }
+
+/* ── Typography ───────────────────────────────────────────────────────────── */
+h1, h2, h3 { font-family: var(--font-display); font-weight: 700; letter-spacing: 0.05em; }
+h4, h5, h6 { font-family: var(--font-body); font-weight: 600; }
+
+.mono { font-family: var(--font-mono); }
+
+/* ── Scrollbar ────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar               { width: 6px; }
+::-webkit-scrollbar-track         { background: var(--bg-base); }
+::-webkit-scrollbar-thumb         { background: var(--bg-overlay); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover   { background: var(--border-bright); }
+
+/* ── Utility classes ──────────────────────────────────────────────────────── */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap;
+}
+
+/* Amber glow on focus */
+input:focus, textarea:focus, select:focus, button:focus-visible {
+  outline: 1px solid var(--amber-dim);
+  outline-offset: 2px;
+}
+
+/* ── Animations ───────────────────────────────────────────────────────────── */
+@keyframes fadeIn   { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes pulse    { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+@keyframes scanline { from { transform: translateY(-100%); } to { transform: translateY(100vh); } }
+@keyframes flicker  { 0%,100% { opacity:1; } 92% { opacity:1; } 93% { opacity:0.8; } 94% { opacity:1; } }
+
+.animate-in {
+  animation: fadeIn 0.35s ease forwards;
+}
